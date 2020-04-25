@@ -1,0 +1,4 @@
+<p>{{ device.label }}</p>
+<div *ngFor="let command of getCommands();">
+    <button (click)=sendCommand(command.command)>{{ command.label }}</button>
+</div>

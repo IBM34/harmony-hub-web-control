@@ -1,0 +1,9 @@
+<div *ngIf="configReady">
+    <p>HUB IP: {{ hub.ip }}</p>
+    <p>HUB REMOTE ID: {{ hub.remoteId }}</p>
+
+    <p>Devices :</p>
+    <div *ngFor="let device of hubConfig.device; let i = index">
+    <app-hub-device [hub]=hub [device]=device></app-hub-device>
+    </div>
+</div>
