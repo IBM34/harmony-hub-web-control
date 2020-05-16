@@ -103,4 +103,40 @@ hubRoute.route('/hub/:hubId/device/:deviceId/command/:commandName').get((req, re
       })
 })
 
+
+// Send hue command
+hubRoute.route('/hub/:hubId/hue').post((req, res) => {
+  Hub.findById(req.params.hubId, (error, data) => {
+      if (error) {
+        return next(error)
+      } else {
+          const hub = new HarmonyHub(data.ip, data.remoteId);
+          hub.connect()
+            .then((config) => {
+              let powerState = req.params.powerState == 1 ? true : false;
+              let hueName = req.params.hueName;
+              hub.sendRequest('harmony.automation?setstate', req.body);
+              res.status(200).json();
+            })
+      }
+    })
+})
+
+// get hue config
+hubRoute.route('/hub/:hubId/hue/config').get((req, res) => {
+  Hub.findById(req.params.hubId, (error, data) => {
+      if (error) {
+        return next(error)
+      } else {
+          const hub = new HarmonyHub(data.ip, data.remoteId);
+          hub.connect()
+            .then((config) => {
+              return hub.sendRequestAndWaitResponse('harmony.automation?getstate')
+              .then(message => res.json(message.data));
+            })
+      }
+    })
+})
+
+
 module.exports = hubRoute;

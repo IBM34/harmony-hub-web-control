@@ -1,4 +1,3 @@
-<p *ngIf="Hub.length <= 0" class="no-data text-center">There is no hub added yet!</p>
 <div *ngFor="let hub of Hub; let i = index">
     <app-hub-control [hub]=hub></app-hub-control>
 </div>

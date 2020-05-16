@@ -4,7 +4,7 @@ import { HubCreateComponent } from './components/hub-create/hub-create.component
 import { HubListComponent } from './components/hub-list/hub-list.component'
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'hub-create' },
+  { path: '', pathMatch: 'full', redirectTo: 'hub-list' },
   { path: 'hub-create', component: HubCreateComponent },
   { path: 'hub-list', component: HubListComponent }  
 ];

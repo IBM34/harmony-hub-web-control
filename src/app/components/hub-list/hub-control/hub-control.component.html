@@ -2,8 +2,18 @@
     <p>HUB IP: {{ hub.ip }}</p>
     <p>HUB REMOTE ID: {{ hub.remoteId }}</p>
 
-    <p>Devices :</p>
-    <div *ngFor="let device of hubConfig.device; let i = index">
-    <app-hub-device [hub]=hub [device]=device></app-hub-device>
-    </div>
+    <mat-tab-group dynamicHeight>
+        <div *ngFor="let device of hubConfig.device; let i = index">
+            <mat-tab label="{{ device.label }}">
+                <div class="example-large-box mat-elevation-z4">
+                <app-hub-device [hub]=hub [device]=device></app-hub-device>
+                </div>
+            </mat-tab>
+        </div>
+        <mat-tab label="Hue">
+            <div class="example-large-box mat-elevation-z4">
+                <app-hub-hue [hub]=hub></app-hub-hue>
+                </div>
+        </mat-tab>
+    </mat-tab-group>
 </div>

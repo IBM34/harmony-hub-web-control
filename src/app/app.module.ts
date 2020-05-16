@@ -10,6 +10,16 @@ import { ApiService } from './services/api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HubDeviceComponent } from './components/hub-list/hub-control/hub-device/hub-device.component';
 import { HubControlComponent } from './components/hub-list/hub-control/hub-control.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import { HubHueComponent } from './components/hub-list/hub-control/hub-hue/hub-hue.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -19,6 +29,7 @@ import { HubControlComponent } from './components/hub-list/hub-control/hub-contr
     HubListComponent,
     HubControlComponent,
     HubDeviceComponent,
+    HubHueComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +38,16 @@ import { HubControlComponent } from './components/hub-list/hub-control/hub-contr
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTabsModule,
+    MatCardModule,
+    FlexLayoutModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatSlideToggleModule
+
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

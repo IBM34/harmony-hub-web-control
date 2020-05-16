@@ -1,6 +1,20 @@
-<nav>
-  <a routerLinkActive="active" routerLink="/hub-create">Add HUB</a>
-  <a routerLinkActive="active" routerLink="/hub-list">List HUBS</a>
-</nav>
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+  <h1>Harmony Hub Web Control</h1>
+</mat-toolbar>
 
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav #snav mode="side" [fixedInViewport]="true" [fixedTopGap]="mobileQuery.matches ? 56 : 64" 
+  [mode]="mobileQuery.matches ? 'over' : 'side'">
+    <mat-nav-list>
+      <button mat-button routerLinkActive="active" routerLink="/hub-create" color="primary">ADD HUB</button><br>
+      <button mat-button routerLinkActive="active" routerLink="/hub-list" color="primary">HUB LIST</button>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+

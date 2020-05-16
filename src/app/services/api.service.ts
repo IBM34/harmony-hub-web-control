@@ -50,6 +50,17 @@ export class ApiService {
     )
   }
 
+  // Get hue config
+  getHueConfig(id): Observable<any> {
+    let url = `${this.baseUri}/hub/${id}/hue/config`;
+    return this.http.get(url, {headers: this.headers}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.errorMgmt)
+    )
+  }
+
   // Update hub
   updateHub(id, data): Observable<any> {
     let url = `${this.baseUri}/update/${id}`;
@@ -89,6 +100,25 @@ export class ApiService {
       }),
       catchError(this.errorMgmt)
     )
+  }
+
+   // Send hue command
+   sendCommand(hubId,deviceId,commandName): Observable<any> {
+    let url = `${this.baseUri}/hub/${hubId}/device/${deviceId}/command/${commandName}`;
+    return this.http.get(url, {headers: this.headers}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.errorMgmt)
+    )
+  }
+   // Create
+   sendHueCommand(hubId,hueKey,hueValue): Observable<any> {
+    let url = `${this.baseUri}/hub/${hubId}/hue`;
+    return this.http.post(url, {"state":{[hueKey]:hueValue}})
+      .pipe(
+        catchError(this.errorMgmt)
+      )
   }
 
 }

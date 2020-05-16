@@ -1,0 +1,10 @@
+<div fxLayout="row wrap">
+    <mat-card *ngFor="let item of hueMap | keyvalue" [fxFlex]="mobileQuery.matches ? 100 : 24">
+        <mat-card-header>
+            <mat-card-title>{{ item.key }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-slide-toggle [checked]="item.value.on" (change)="onChange($event,item.key)" ></mat-slide-toggle>
+        </mat-card-content>
+    </mat-card>
+</div>
