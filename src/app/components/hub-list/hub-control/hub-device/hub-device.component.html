@@ -4,26 +4,11 @@
             <mat-card-title>{{ item.key }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <ng-container *ngIf="item.key === 'NavigationBasic'">
-                <div fxLayout="row" fxLayoutAlign="center center">
-                    <button mat-button ><mat-icon>keyboard_arrow_up</mat-icon></button>
+            <div fxLayout="row wrap">
+                <div *ngFor="let command of item.value" class="div-button">
+                    <button mat-button (click)=sendCommand(command)>{{ command }}</button>
                 </div>
-                <div fxLayout="row" fxLayoutAlign="center center">
-                    <button mat-button ><mat-icon>keyboard_arrow_left</mat-icon></button>
-                    <button mat-button>OK</button>
-                    <button mat-button ><mat-icon>keyboard_arrow_right</mat-icon></button>
-                </div>
-                <div fxLayout="row" fxLayoutAlign="center center">
-                    <button mat-button ><mat-icon>keyboard_arrow_down</mat-icon></button>
-                </div>
-            </ng-container>
-            <ng-container *ngIf="item.key !== 'NavigationBasic'">
-                <div fxLayout="row wrap">
-                    <div *ngFor="let command of item.value" class="div-button">
-                        <button mat-button (click)=sendCommand(command)>{{ command }}</button>
-                    </div>
-                </div>
-            </ng-container>
+            </div>
         </mat-card-content>
     </mat-card>
 </div>
