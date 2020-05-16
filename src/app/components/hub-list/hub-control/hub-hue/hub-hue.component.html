@@ -1,5 +1,5 @@
 <div fxLayout="row wrap">
-    <mat-card *ngFor="let item of hueMap | keyvalue" [fxFlex]="mobileQuery.matches ? 100 : 24">
+    <mat-card *ngFor="let item of hueMap | keyvalue">
         <mat-card-header>
             <mat-card-title>{{ item.key }}</mat-card-title>
         </mat-card-header>

@@ -1,5 +1,5 @@
 <div fxLayout="row wrap">
-    <mat-card *ngFor="let item of commandMap | keyvalue" [fxFlex]="mobileQuery.matches ? 100 : 24">
+    <mat-card *ngFor="let item of commandMap | keyvalue">
         <mat-card-header>
             <mat-card-title>{{ item.key }}</mat-card-title>
         </mat-card-header>
@@ -19,7 +19,7 @@
             </ng-container>
             <ng-container *ngIf="item.key !== 'NavigationBasic'">
                 <div fxLayout="row wrap">
-                    <div *ngFor="let command of item.value" fxFlex="30" class="div-button">
+                    <div *ngFor="let command of item.value" class="div-button">
                         <button mat-button (click)=sendCommand(command)>{{ command }}</button>
                     </div>
                 </div>

@@ -1,5 +1,4 @@
-import { ChangeDetectorRef, OnDestroy,Component, OnInit, Input } from '@angular/core';
-import {MediaMatcher} from '@angular/cdk/layout';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from './../../../../services/api.service';
 import { isNullOrUndefined } from 'util';
 
@@ -8,7 +7,7 @@ import { isNullOrUndefined } from 'util';
   templateUrl: './hub-hue.component.html',
   styleUrls: ['./hub-hue.component.css']
 })
-export class HubHueComponent implements OnInit , OnDestroy{
+export class HubHueComponent implements OnInit{
 
   @Input() hub: any;
   hueMap = new Map();
@@ -16,11 +15,7 @@ export class HubHueComponent implements OnInit , OnDestroy{
   private _mobileQueryListener: () => void;
   fxFlexValue = 24;
 
-  constructor(private apiService: ApiService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-  }
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.getHueConfig();
@@ -42,9 +37,5 @@ export class HubHueComponent implements OnInit , OnDestroy{
     this.hueMap.get(key).on = event.checked;
     this.apiService.sendHueCommand(this.hub._id,key,this.hueMap.get(key)).subscribe((data) => {
     })
-}
-
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 }

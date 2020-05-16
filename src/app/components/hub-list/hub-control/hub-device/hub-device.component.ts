@@ -1,5 +1,4 @@
-import { ChangeDetectorRef, OnDestroy,Component, OnInit, Input } from '@angular/core';
-import {MediaMatcher} from '@angular/cdk/layout';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from './../../../../services/api.service';
 
 @Component({
@@ -7,7 +6,7 @@ import { ApiService } from './../../../../services/api.service';
   templateUrl: './hub-device.component.html',
   styleUrls: ['./hub-device.component.css']
 })
-export class HubDeviceComponent implements OnInit, OnDestroy{
+export class HubDeviceComponent implements OnInit{
   
   @Input() hub:any
   @Input() device:any;
@@ -16,11 +15,7 @@ export class HubDeviceComponent implements OnInit, OnDestroy{
   private _mobileQueryListener: () => void;
   fxFlexValue = 24;
 
-  constructor(private apiService: ApiService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-  }
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.getCommands();
@@ -42,7 +37,4 @@ export class HubDeviceComponent implements OnInit, OnDestroy{
     });
   }
 
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
-  }
 }
