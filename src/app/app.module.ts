@@ -20,6 +20,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { HubHueComponent } from './components/hub-list/hub-control/hub-hue/hub-hue.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSliderModule} from '@angular/material/slider';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSliderModule
 
   ],
   providers: [ApiService],

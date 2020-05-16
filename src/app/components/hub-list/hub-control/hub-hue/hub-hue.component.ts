@@ -33,9 +33,19 @@ export class HubHueComponent implements OnInit{
      })
   }
 
-  onChange(event,key) {
+  onChangePower(event,key) {
     this.hueMap.get(key).on = event.checked;
     this.apiService.sendHueCommand(this.hub._id,key,this.hueMap.get(key)).subscribe((data) => {
     })
+  }
+
+  onChangeBrightness(event,key) {
+    this.hueMap.get(key).brightness = event.value;
+    this.apiService.sendHueCommand(this.hub._id,key,this.hueMap.get(key)).subscribe((data) => {
+    })
+  }
+
+  formatLabel(value: number) {
+    return value + '%';
   }
 }

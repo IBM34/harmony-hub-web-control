@@ -4,7 +4,22 @@
             <mat-card-title>{{ item.key }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <mat-slide-toggle [checked]="item.value.on" (change)="onChange($event,item.key)" ></mat-slide-toggle>
+            <div class="center">
+                <mat-slide-toggle [checked]="item.value.on" (change)="onChangePower($event,item.key)" ></mat-slide-toggle>
+            </div>
+            <br><br>
+            <div class="center">
+                <mat-slider
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="1"
+                min="1"
+                max="100"
+                [(ngModel)]="item.value.brightness"
+                (change)="onChangeBrightness($event,item.key)"
+                [disabled]="!item.value.on">
+                </mat-slider>
+            </div>
         </mat-card-content>
     </mat-card>
 </div>
