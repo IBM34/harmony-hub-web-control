@@ -20,6 +20,10 @@
                 [disabled]="!item.value.on">
                 </mat-slider>
             </div>
+            <br>
+            <div>
+                <color-hue-picker (onChangeComplete)="onChangeColor($event,item.key)"></color-hue-picker>
+            </div>
         </mat-card-content>
     </mat-card>
 </div>
