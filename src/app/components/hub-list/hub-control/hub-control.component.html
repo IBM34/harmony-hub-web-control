@@ -1,6 +1,11 @@
 <div *ngIf="configReady">
-    <p>HUB IP: {{ hub.ip }}</p>
-    <p>HUB REMOTE ID: {{ hub.remoteId }}</p>
+    <div fxLayout="row">
+            <img src="assets/img/hub.png" alt="image">
+            <div fxLayout="column" fxFlexAlign="center">
+                <p><b>HUB IP:</b> {{ hub.ip }}</p>
+                <p><b>HUB REMOTE ID:</b> {{ hub.remoteId }}</p>
+            </div>   
+    </div>
 
     <mat-tab-group dynamicHeight>
         <div *ngFor="let device of hubConfig.device; let i = index">
