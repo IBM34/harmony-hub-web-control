@@ -1,19 +1,9 @@
 <form [formGroup]="hubForm" (ngSubmit)="onSubmit()">
-    <label for="inputIp">HUB IP</label>
-    <input  type="text" formControlName="ip">
-    <!-- error -->
-    <div *ngIf="submitted && myForm.ip.errors?.required">
-        HUB IP is required.
-    </div>
-
-    <label for="inputRemoteId">HUB REMOTE ID</label>
-    <input  type="text" formControlName="remoteId">
-    <!-- error -->
-    <div *ngIf="submitted && myForm.remoteId.errors?.required">
-        HUB REMOTE ID is required.
-    </div>
-
-    <button type="submit">Add</button>
+    <mat-form-field>
+        <mat-label>HUB IP</mat-label>
+        <input matInput [formControl]="ip" >
+      </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Add</button>
 </form>
   
       

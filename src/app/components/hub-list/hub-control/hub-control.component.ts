@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { ApiService } from './../../../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hub-control',
@@ -12,7 +13,8 @@ export class HubControlComponent implements OnInit {
   hubConfig:any;
   configReady = false;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private router: Router,
+    private ngZone: NgZone) {
   }
 
   ngOnInit(): void {
@@ -24,5 +26,15 @@ export class HubControlComponent implements OnInit {
       this.hubConfig = data;
       this.configReady = true;
      })
+  }
+
+  deleteHub(){
+    this.apiService.deleteHub(this.hub._id).subscribe(
+      (res) => {
+        console.log('Hub successfully deleted!')
+        this.ngZone.run(() => this.router.navigateByUrl('/hub-create'))
+      }, (error) => {
+        console.log(error);
+      });
   }
 }

@@ -2,6 +2,7 @@ const HarmonyHub = require('harmonyhub-api').HarmonyHub;
 const express = require('express');
 const app = express();
 const hubRoute = express.Router();
+var http = require('http');
 
 // Hub model
 let Hub = require('../models/hub.model');
@@ -137,6 +138,60 @@ hubRoute.route('/hub/:hubId/hue/config').get((req, res) => {
       }
     })
 })
+
+// get hub remote id
+hubRoute.route('/remoteId/:hubIp').get((req, res) => {
+  requestHub(req.params.hubIp)
+    .then(function (data) {
+      res.json(data);
+  })
+})
+
+/**
+ * Get informations of the hub
+ *
+ * @param host The host or ip of the hub
+ * @returns A json object containing informations of the hub
+ */
+function requestHub(host) {
+  return new Promise(function (resolve, reject) {
+      var body = JSON.stringify({"id ": 1,"cmd": "setup.account?getProvisionInfo","params": {}});
+      var options = {
+          method: 'POST',
+          host: host,
+          port: 8088,
+          path: '/',
+          headers: {
+              'Content-Type': 'application/json',
+              'Content-Length': Buffer.byteLength(body),
+              'Origin': 'http://sl.dhg.myharmony.com',
+              'Accept-Charset': 'utf-8'
+          }
+      };
+      var req = http.request(options, function (res) {
+          var chunks = [];
+          res.on('data', function (chunk) { return chunks.push(chunk); });
+          res.on('end', function () {
+              var response = Buffer.concat(chunks).toString();
+              if (res.statusCode === 200) {
+                  var data = JSON.parse(response).data;
+                  resolve(data);
+              }
+              else {
+                  reject({
+                      statusCode: res.statusCode,
+                      statusMessage: res.statusMessage,
+                      body: response
+                  });
+              }
+          });
+      });
+      req.on('error', reject);
+      req.write(body);
+      req.end();
+  });
+}
+
 
 
 module.exports = hubRoute;

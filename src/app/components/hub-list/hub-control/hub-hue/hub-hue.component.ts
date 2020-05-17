@@ -47,7 +47,7 @@ export class HubHueComponent implements OnInit{
   }
 
   formatLabel(value: number) {
-    return value + '%';
+    return Math.ceil(value/254 * 100) + '%';
   }
 
   onChangeColor($event: ColorEvent,key) {

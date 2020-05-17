@@ -103,16 +103,6 @@ export class ApiService {
   }
 
    // Send hue command
-   sendCommand(hubId,deviceId,commandName): Observable<any> {
-    let url = `${this.baseUri}/hub/${hubId}/device/${deviceId}/command/${commandName}`;
-    return this.http.get(url, {headers: this.headers}).pipe(
-      map((res: Response) => {
-        return res || {}
-      }),
-      catchError(this.errorMgmt)
-    )
-  }
-   // Create
    sendHueCommand(hubId,hueKey,hueValue): Observable<any> {
     let url = `${this.baseUri}/hub/${hubId}/hue`;
     return this.http.post(url, {"state":{[hueKey]:hueValue}})
@@ -121,4 +111,14 @@ export class ApiService {
       )
   }
 
+  /// get hub remoteId
+  getHubRemoteId(hubIp): Observable<any> {
+    let url = `${this.baseUri}/remoteId/${hubIp}`;
+    return this.http.get(url, {headers: this.headers}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.errorMgmt)
+    )
+  }
 }

@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
 
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -23,12 +24,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-slider-min-value.mat-slider-thumb-label-showing .mat-slider-thumb,
  .mat-slider-min-value.mat-slider-thumb-label-showing .mat-slider-thumb-label {
-    background-color: #ff4081;
+    background-color: #3f51b5;
 }
 
 .mat-slider-min-value.mat-slider-thumb-label-showing .mat-slider-thumb,
  .mat-slider-min-value.mat-slider-thumb-label-showing.cdk-focused .mat-slider-thumb-label {
-    background-color: #ff4081;
+    background-color: #3f51b5;
 }
 
 .center{
