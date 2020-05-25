@@ -21,7 +21,7 @@ import {MatListModule} from '@angular/material/list';
 import { HubHueComponent } from './components/hub-list/hub-control/hub-hue/hub-hue.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSliderModule} from '@angular/material/slider';
-import { ColorHueModule } from 'ngx-color/hue'; 
+import { ColorCircleModule } from 'ngx-color/circle';
 import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
@@ -50,7 +50,7 @@ import {MatInputModule} from '@angular/material/input';
     MatListModule,
     MatSlideToggleModule,
     MatSliderModule,
-    ColorHueModule,
+    ColorCircleModule,
     MatInputModule
   ],
   providers: [ApiService],
