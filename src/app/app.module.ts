@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HubCreateComponent } from './components/hub-create/hub-create.component';
 import { HubListComponent } from './components/hub-list/hub-list.component';
 import { ApiService } from './services/api.service';
@@ -23,6 +23,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSliderModule} from '@angular/material/slider';
 import { ColorCircleModule } from 'ngx-color/circle';
 import {MatInputModule} from '@angular/material/input';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import {MatInputModule} from '@angular/material/input';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NoopAnimationsModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -51,7 +52,11 @@ import {MatInputModule} from '@angular/material/input';
     MatSlideToggleModule,
     MatSliderModule,
     ColorCircleModule,
-    MatInputModule
+    MatInputModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-center',
+    })
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

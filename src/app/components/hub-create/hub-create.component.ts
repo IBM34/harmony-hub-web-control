@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { ApiService } from './../../services/api.service';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
-import { Hub } from './../../models/hub.model';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -23,7 +23,8 @@ export class HubCreateComponent implements OnInit {
     public fb: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private toastr: ToastrService
   ) { 
     this.mainForm();
   }
@@ -51,7 +52,7 @@ export class HubCreateComponent implements OnInit {
         this.hubForm.controls['remoteId'].setValue(res.activeRemoteId);
         this.apiService.createHub(this.hubForm.value).subscribe(
           (res) => {
-            console.log('Hub successfully created!')
+            this.toastr.success('Hub successfully created!');
             this.ngZone.run(() => this.router.navigateByUrl('/hub-list'))
           }, (error) => {
             console.log(error);
