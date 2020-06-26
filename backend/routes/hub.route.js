@@ -97,7 +97,7 @@ hubRoute.route('/hub/:hubId/device/:deviceId/command/:commandName').get((req, re
             const hub = new HarmonyHub(data.ip, data.remoteId);
             hub.connect()
               .then((config) => {
-                hub.sendCommand(req.params.commandName,req.params.deviceId);
+                hub.holdCommand(req.params.commandName,req.params.deviceId,1);
                 res.status(200).json();
               })
         }
